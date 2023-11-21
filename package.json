@@ -1,0 +1,9 @@
+{
+  "name": "cypress-hw-base",
+  "scripts": {
+    "cypress": "node_modules\\.bin\\cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^12.17.4"
+  }
+}
