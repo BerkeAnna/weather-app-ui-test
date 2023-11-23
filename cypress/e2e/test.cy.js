@@ -78,11 +78,8 @@ describe('To test the login functionality', () => {
             cy.url().should('eq','https://weather.casrd.de/add' );
             cy.get('.fav-city-name').invoke('text').then((cityName) => {
                 const upperCaseCityName = cityName.toUpperCase();
-
-        // Now use upperCaseCityName for your assertions or other actions
-        cy.log(upperCaseCityName); // Example usage
-
-              
+                cy.log(upperCaseCityName);
+   
             cy.get('.fav-city-add-btn').should('exist');
             cy.get('.fav-city-add-btn').should('have.text', 'FOLLOW');
             cy.get('.fav-city-add-btn').click();
