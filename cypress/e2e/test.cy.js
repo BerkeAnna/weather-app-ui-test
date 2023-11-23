@@ -8,8 +8,8 @@ describe('To test the login functionality', () => {
     })
 
         it('login to the weather app', () => {
-            cy.get('input[name="email"]').type('anna4@test.com');
-            cy.get('input[name="email"]').should('have.value', 'anna4@test.com');
+            cy.get('input[name="email"]').type('anna@test.com');
+            cy.get('input[name="email"]').should('have.value', 'anna@test.com');
             cy.get('input[name="password"]').type('test123');
             cy.get('input[name="password"]').should('have.value', 'test123');
             cy.get('.login-btn').click();
@@ -19,10 +19,10 @@ describe('To test the login functionality', () => {
     });
 
 
-        beforeEach('create from', () => {
+        beforeEach('login', () => {
             cy.visit('https://weather.casrd.de/login');
             cy.wait(5);
-            cy.loginAs('anna4@test.com', 'test123');
+            cy.loginAs('anna@test.com', 'test123');
         })
 
       
@@ -32,7 +32,7 @@ describe('To test the login functionality', () => {
             cy.wait(2);
             cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
-            cy.get('.account-details .name__text').should('have.text', 'anna4@test.com');
+            cy.get('.account-details .name__text').should('have.text', 'anna@test.com');
 
             });
 
@@ -103,7 +103,7 @@ describe('To test the login functionality', () => {
             cy.get('.fav-city-add-btn').should('exist');
             cy.get('button.fav-city-added-btn').should('have.class', 'fav-city-add-btn').and('contain', 'FOLLOWED');
         });
-           it('The city is listed on the home page', () => {
+    
        
             cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
@@ -115,11 +115,11 @@ describe('To test the login functionality', () => {
             cy.get('.city-name__text').invoke('text').then((text) => {
                 expect(text.toUpperCase()).to.equal(upperCaseCityName);
               });
-            
-        
-        cy.get('.remove-button').click();
-    });
-    });
+              cy.get('.remove-button').click();
+            });
+       
+   
+   
 });
     //mindig új város kell!!!!!!!!!!!!!!
     context('Subscribe to a city from the search results on the “ADD CITY” page', () => {
