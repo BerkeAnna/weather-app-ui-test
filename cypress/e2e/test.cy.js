@@ -37,6 +37,7 @@ describe('To test the login functionality', () => {
 
         it('The “☰” menu', () => {
             cy.wait(2);
+            cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
             cy.get('.account-details .name__text').should('have.text', 'testtesttest2@gmail.com');
             cy.get('.account-details .email__text').should('have.text', 'Free Plan');
@@ -46,6 +47,28 @@ describe('To test the login functionality', () => {
             cy.get('.menu-link').should('contain', 'Add City');
             
             cy.get('.menu-link').should('contain', 'Logout');
+
+        });
+
+        it('Dark mode button', () => {
+            cy.get('.mode-toggle__input').should('exist');
+            cy.get('.mode-toggle__circle').click();
+
+        });
+      
+
+        it('Add city - main page', () => {
+            cy.get('.add__card').should('exist');
+            cy.get('.add__card').click();
+            cy.url().should('eq','https://weather.casrd.de/add' );
+
+        });
+
+        it('Add city - ☰ menu', () => {
+            cy.get('#Menu_Burger_Icon').should('exist');
+            cy.get('#Menu_Burger_Icon').click();
+            cy.get('.menu-link').contains('Add City').click();
+            cy.url().should('eq','https://weather.casrd.de/add' );
 
         });
       
