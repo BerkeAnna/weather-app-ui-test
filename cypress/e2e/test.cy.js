@@ -27,5 +27,21 @@ describe('To test the login functionality', () => {
 
        
     });
+
+    context( 'logged in' , () => {
+        beforeEach('create from', () => {
+            cy.visit('https://weather.casrd.de/login');
+            cy.wait(5);
+            cy.loginAs('testtesttest2@gmail.com', 'test123');
+        })
+
+        it('The “☰” menu', () => {
+            cy.wait(2);
+            cy.get('#Menu_Burger_Icon').click();
+            cy.get('.account-details .name__text').should('have.text', 'testtesttest2@gmail.com')
+
+        });
+      
+    });
    
 });
