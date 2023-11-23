@@ -38,7 +38,10 @@ describe('To test the login functionality', () => {
         it('The “☰” menu', () => {
             cy.wait(2);
             cy.get('#Menu_Burger_Icon').click();
-            cy.get('.account-details .name__text').should('have.text', 'testtesttest2@gmail.com')
+            cy.get('.account-details .name__text').should('have.text', 'testtesttest2@gmail.com');
+            cy.get('.account-details .email__text').should('have.text', 'Free Plan');
+
+            cy.get('.menu-link.link-active').should('contain', 'Home')
 
         });
       
