@@ -7,16 +7,6 @@ describe('To test the login functionality', () => {
         cy.wait(5);
     })
 
-        
-       /* it('sign up to the weather app', () => {
-            cy.get('.signup-link').click();
-            cy.get('input[name="email"]').type('testtesttest2@gmail.com');
-            cy.get('input[name="email"]').should('have.value', 'testtesttest2@gmail.com');
-            cy.get('input[name="password"]').type('test123');
-            cy.get('input[name="password"]').should('have.value', 'test123');
-            cy.get('.signup-btn').click();
-        });    
-*/
         it('login to the weather app', () => {
             cy.get('input[name="email"]').type('testtesttest2@gmail.com');
             cy.get('input[name="email"]').should('have.value', 'testtesttest2@gmail.com');
@@ -100,19 +90,23 @@ describe('To test the login functionality', () => {
         });
       
     });
-
+    //mindig új város kell!!!!!!!!!!!!!!
         it.only('Subscribe to a city from the search results on the “ADD CITY” page', () => {
             cy.get('.add__card').should('exist');
             cy.get('.add__card').click();
             cy.get('.search-city-input').should('exist');
-            cy.get('.search-city-input').type('Caracas');
-            cy.get('.search-city-input').should('have.value','Caracas');
+            cy.get('.search-city-input').type('Madrid');
+            cy.get('.search-city-input').should('have.value','Madrid');
+           
+            cy.wait(50);
             cy.get('.search-city-btn').should('exist');
             cy.wait(50);
             cy.get('.search-city-btn').click();
-            cy.wait(50);
+            cy.wait(5000);
             cy.get('.add-city-btn').should('exist');
             cy.get('.add-city-btn').click();
+            //cy.wait(1);
+            cy.contains('have.value', 'City has been successfully added!').should('be.visible');
         });
 
    
