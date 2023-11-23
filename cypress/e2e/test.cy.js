@@ -76,16 +76,33 @@ describe('To test the login functionality', () => {
             cy.get('.add__card').should('exist');
             cy.get('.add__card').click();
             cy.url().should('eq','https://weather.casrd.de/add' );
+            cy.get('.fav-city-name').invoke('text').then((cityName) => {
+                const upperCaseCityName = cityName.toUpperCase();
+
+        // Now use upperCaseCityName for your assertions or other actions
+        cy.log(upperCaseCityName); // Example usage
+
+              
             cy.get('.fav-city-add-btn').should('exist');
             cy.get('.fav-city-add-btn').should('have.text', 'FOLLOW');
             cy.get('.fav-city-add-btn').click();
             cy.wait(3);
             cy.get('.fav-city-add-btn').should('exist');
             cy.get('button.fav-city-added-btn').should('have.class', 'fav-city-add-btn').and('contain', 'FOLLOWED');
+            cy.get('#Menu_Burger_Icon').should('exist');
+            cy.get('#Menu_Burger_Icon').click();
+            cy.wait(4);
+            cy.get('li.menu-link').contains('Home').click();
 
-
+            cy.wait(7);
+            cy.get('.city-name__text').invoke('text').then((text) => {
+                expect(text.toUpperCase()).to.equal(upperCaseCityName);
+              });
+              
+           
         });
       
     });
    
+});
 });
