@@ -72,11 +72,11 @@ describe('To test the login functionality', () => {
 
         });
 
-        it('City of the month - follow button', () => {
+        it('Subscribe to “CITY OF THE MONTH” on the “ADD CITY” page', () => {
             cy.get('.add__card').should('exist');
             cy.get('.add__card').click();
             cy.url().should('eq','https://weather.casrd.de/add' );
-            cy.get('.fav-city-name').invoke('text').then((cityName) => {
+            cy.get('.fav-city-name:first').invoke('text').then((cityName) => {
                 const upperCaseCityName = cityName.toUpperCase();
                 cy.log(upperCaseCityName);
    
@@ -100,6 +100,21 @@ describe('To test the login functionality', () => {
         });
       
     });
+
+        it.only('Subscribe to a city from the search results on the “ADD CITY” page', () => {
+            cy.get('.add__card').should('exist');
+            cy.get('.add__card').click();
+            cy.get('.search-city-input').should('exist');
+            cy.get('.search-city-input').type('Caracas');
+            cy.get('.search-city-input').should('have.value','Caracas');
+            cy.get('.search-city-btn').should('exist');
+            cy.wait(50);
+            cy.get('.search-city-btn').click();
+            cy.wait(50);
+            cy.get('.add-city-btn').should('exist');
+            cy.get('.add-city-btn').click();
+        });
+
    
 });
 });
