@@ -8,8 +8,8 @@ describe('To test the login functionality', () => {
     })
 
         it('login to the weather app', () => {
-            cy.get('input[name="email"]').type('anna3@test.com');
-            cy.get('input[name="email"]').should('have.value', 'anna3@test.com');
+            cy.get('input[name="email"]').type('anna4@test.com');
+            cy.get('input[name="email"]').should('have.value', 'anna4@test.com');
             cy.get('input[name="password"]').type('test123');
             cy.get('input[name="password"]').should('have.value', 'test123');
             cy.get('.login-btn').click();
@@ -22,7 +22,7 @@ describe('To test the login functionality', () => {
         beforeEach('create from', () => {
             cy.visit('https://weather.casrd.de/login');
             cy.wait(5);
-            cy.loginAs('anna3@test.com', 'test123');
+            cy.loginAs('anna4@test.com', 'test123');
         })
 
       
@@ -32,7 +32,7 @@ describe('To test the login functionality', () => {
             cy.wait(2);
             cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
-            cy.get('.account-details .name__text').should('have.text', 'anna3@test.com');
+            cy.get('.account-details .name__text').should('have.text', 'anna4@test.com');
 
             });
 
@@ -87,12 +87,13 @@ describe('To test the login functionality', () => {
         });
 
     context('Subscribe to “CITY OF THE MONTH” on the “ADD CITY” page', () => {
-        it('Clicking on the FOLLOW button and the city is listed on the home page', () => {
+        let upperCaseCityName = "";
+        it('Clicking on the FOLLOW button', () => {
             cy.get('.add__card').should('exist');
             cy.get('.add__card').click();
             cy.url().should('eq','https://weather.casrd.de/add' );
             cy.get('.fav-city-name:first').invoke('text').then((cityName) => {
-                const upperCaseCityName = cityName.toUpperCase();
+                upperCaseCityName = cityName.toUpperCase();
                 cy.log(upperCaseCityName);
    
             cy.get('.fav-city-add-btn').should('exist');
@@ -101,6 +102,9 @@ describe('To test the login functionality', () => {
             cy.wait(3);
             cy.get('.fav-city-add-btn').should('exist');
             cy.get('button.fav-city-added-btn').should('have.class', 'fav-city-add-btn').and('contain', 'FOLLOWED');
+        });
+           it('The city is listed on the home page', () => {
+       
             cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
             cy.wait(4);
@@ -112,10 +116,9 @@ describe('To test the login functionality', () => {
                 expect(text.toUpperCase()).to.equal(upperCaseCityName);
               });
             
-            
-        });
+        
         cy.get('.remove-button').click();
-      
+    });
     });
 });
     //mindig új város kell!!!!!!!!!!!!!!
