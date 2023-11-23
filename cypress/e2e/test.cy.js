@@ -41,7 +41,11 @@ describe('To test the login functionality', () => {
             cy.get('.account-details .name__text').should('have.text', 'testtesttest2@gmail.com');
             cy.get('.account-details .email__text').should('have.text', 'Free Plan');
 
-            cy.get('.menu-link.link-active').should('contain', 'Home')
+            cy.get('.menu-link').should('contain', 'Home');
+            
+            cy.get('.menu-link').should('contain', 'Add City');
+            
+            cy.get('.menu-link').should('contain', 'Logout');
 
         });
       
