@@ -25,6 +25,8 @@ describe('To test the login functionality', () => {
             cy.loginAs('testtesttest2@gmail.com', 'test123');
         })
 
+      
+
         it('The “☰” menu', () => {
             cy.wait(2);
             cy.get('#Menu_Burger_Icon').should('exist');
@@ -86,17 +88,20 @@ describe('To test the login functionality', () => {
                 expect(text.toUpperCase()).to.equal(upperCaseCityName);
               });
               
-           
+            
         });
+        cy.get('.remove-button').click();
       
     });
     //mindig új város kell!!!!!!!!!!!!!!
-        it.only('Subscribe to a city from the search results on the “ADD CITY” page', () => {
+        it('Subscribe to a city from the search results on the “ADD CITY” page', () => {
+            let name= 'Budapest'; 
+            const upperCaseCityName = name.toUpperCase();
             cy.get('.add__card').should('exist');
             cy.get('.add__card').click();
             cy.get('.search-city-input').should('exist');
-            cy.get('.search-city-input').type('Madrid');
-            cy.get('.search-city-input').should('have.value','Madrid');
+            cy.get('.search-city-input').type(name);
+            cy.get('.search-city-input').should('have.value', name );
            
             cy.wait(50);
             cy.get('.search-city-btn').should('exist');
@@ -106,7 +111,13 @@ describe('To test the login functionality', () => {
             cy.get('.add-city-btn').should('exist');
             cy.get('.add-city-btn').click();
             //cy.wait(1);
-            cy.contains('have.value', 'City has been successfully added!').should('be.visible');
+            cy.get('body').should('contain', 'City has been successfully added!')
+            cy.get('#Menu_Burger_Icon').should('exist');
+            cy.get('#Menu_Burger_Icon').click();
+            cy.wait(4);
+            cy.get('li.menu-link').contains('Home').click();
+            cy.contains('.weather__card .city-name__text', name).first().should('contain', name);
+            //cy.get('.remove-button').click();
         });
 
    
