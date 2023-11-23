@@ -71,6 +71,20 @@ describe('To test the login functionality', () => {
             cy.url().should('eq','https://weather.casrd.de/add' );
 
         });
+
+        it('City of the month - follow button', () => {
+            cy.get('.add__card').should('exist');
+            cy.get('.add__card').click();
+            cy.url().should('eq','https://weather.casrd.de/add' );
+            cy.get('.fav-city-add-btn').should('exist');
+            cy.get('.fav-city-add-btn').should('have.text', 'FOLLOW');
+            cy.get('.fav-city-add-btn').click();
+            cy.wait(3);
+            cy.get('.fav-city-add-btn').should('exist');
+            cy.get('button.fav-city-added-btn').should('have.class', 'fav-city-add-btn').and('contain', 'FOLLOWED');
+
+
+        });
       
     });
    
