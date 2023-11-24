@@ -1,5 +1,5 @@
-//An example test
-describe('To test the login functionality', () => {
+
+describe('To test weather app', () => {
     
     context( 'Sign up' , () => {
     beforeEach('create from', () => {
@@ -28,7 +28,7 @@ describe('To test the login functionality', () => {
       
 
         context('The “☰” menu', () => {
-            it(' username is displayed', () => {
+            it(`Check if user's username is correctly displayed in the menu`, () => {
             cy.wait(2);
             cy.get('#Menu_Burger_Icon').should('exist');
             cy.get('#Menu_Burger_Icon').click();
@@ -36,11 +36,11 @@ describe('To test the login functionality', () => {
 
             });
 
-            it('e “Free Plan” subscription', () => {
+            it('Check the “Free Plan” subscription', () => {
             cy.get('.account-details .email__text').should('have.text', 'Free Plan');
             });
 
-            it(' 3 button is listed', () => {
+            it('Check if 3 button is listed', () => {
             cy.get('.menu-link').should('contain', 'Home');
             
             cy.get('.menu-link').should('contain', 'Add City');
@@ -56,20 +56,20 @@ describe('To test the login functionality', () => {
                
             });
 
-            beforeEach('dark mode', () => {
+            beforeEach('Press dark mode button', () => {
                 cy.get('.mode-toggle__circle').click();
             })
 
-            it('The header background color', () => {
+            it('Check the header background color', () => {
                 cy.get('header').should('have.css', 'background-color').and('eq', 'rgb(43, 36, 77)');
             });
 
-            it('The header title (TODAY) color', () => {
+            it('Check the header title (TODAY) color', () => {
                 cy.get('header .date__text').should('have.css', 'color').and('eq', 'rgb(255, 255, 255)');
             });
         });
       
-        context('ADD CITY page', () => {
+        context('Check the ADD CITY page', () => {
             it('Add city - main page', () => {
                 cy.get('.add__card').should('exist');
                 cy.get('.add__card').click();
@@ -121,7 +121,6 @@ describe('To test the login functionality', () => {
    
    
 });
-    //mindig új város kell!!!!!!!!!!!!!!
     context('Subscribe to a city from the search results on the “ADD CITY” page', () => {
         let name= 'Budapest'; 
         it('After clicking on the ADD CITY', () => {
@@ -135,7 +134,6 @@ describe('To test the login functionality', () => {
            
             cy.wait(50);
             cy.get('.search-city-btn').should('exist');
-            //cy.wait(50);
             cy.get('.search-city-btn').click();
             cy.wait(5000);
             cy.get('.add-city-btn').should('exist');
